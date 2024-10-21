@@ -17,4 +17,4 @@ This project features an interactive hexagonal grid map built with HTML, CSS, an
 
 1. Clone this repository to your local machine:
    ```bash
-   git clone https://github.com/your-username/hexagonal-grid-map.git
+   git clone https://github.com/kaxiii/hexagonal-grid-map.git
