@@ -1,0 +1,57 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden; /* Evitar el scroll de la página */
+}
+
+#map-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+#hex-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #f0f0f0;
+}
+
+.hex {
+    width: 100px; /* Ancho de cada hexágono */
+    height: 57.74px; /* Altura de cada hexágono */
+    background-color: seagreen;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    display: inline-block;
+    margin: 0;
+    position: absolute;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.hex.selected {
+    background-color: #FF5733; /* Cambia el color a tu preferencia */
+}
+
+.hex-number {
+    color: white; /* Cambiar el color del texto según sea necesario */
+    font-weight: bold;
+    position: absolute;
+    top: 50%; /* Centrar verticalmente */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translate(-50%, -50%); /* Ajustar el centro */
+    pointer-events: none; /* Evitar que los eventos del mouse afecten al texto */
+}
+
+/* CSS para prevenir la selección de texto */
+#hex-map {
+    user-select: none; /* Previene la selección de texto en el mapa */
+}
+
+.hex-number {
+    pointer-events: none; /* Hace que los eventos del ratón no afecten al texto */
+}
