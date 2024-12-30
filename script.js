@@ -1,5 +1,7 @@
 $(document).ready(function() {
     const hexMap = $('#hex-map');
+    const mapContainer = $('#map-container');
+    const infoPanel = $('#info-panel');
     const hexRadius = 50; // Radio del hexágono
     const hexWidth = Math.sqrt(3) * hexRadius; // Ancho del hexágono
     const hexHeight = 2 * hexRadius; // Altura del hexágono
@@ -17,10 +19,17 @@ $(document).ready(function() {
             const x = col * (hexWidth + horizontalSpacing) + (row % 2) * (hexWidth / 2);
             const y = row * (hexHeight * 0.47); // El 0.75 es el factor de separación vertical
             const hexIndex = `${row},${col}`; // Crear un índice para el hexágono
-            const hex = $('<div class="hex"></div>').css({
-                left: `${x}px`,
-                top: `${y}px`
-            });
+            
+            // Generar aleatoriamente agua (azul) o tierra (verde)
+            const isWater = Math.random() < 0.2; // 20% probabilidad de ser agua (azul)
+
+            // Crear el hexágono y asignar clase según si es agua o tierra
+            const hex = $('<div class="hex"></div>')
+                .addClass(isWater ? 'water' : 'land') // Asignar la clase 'water' o 'land'
+                .css({
+                    left: `${x}px`,
+                    top: `${y}px`
+                });
 
             // Agregar un número dentro del hexágono
             hex.append(`<span class="hex-number">${hexIndex}</span>`);
@@ -28,14 +37,21 @@ $(document).ready(function() {
             // Manejar el clic en el hexágono para seleccionar/deseleccionar
             hex.on('click', function() {
                 if ($(this).hasClass('selected')) {
-                    // Si ya está seleccionado, deseleccionarlo
+                    // Si ya está seleccionado, deseleccionarlo y ocultar el panel
                     $(this).removeClass('selected');
+                    infoPanel.removeClass('show');
+                    mapContainer.removeClass('partial-width').addClass('full-width');
                 } else {
                     // Deseleccionar cualquier hexágono seleccionado previamente
                     $('.hex.selected').removeClass('selected');
                     
                     // Seleccionar el hexágono actual
                     $(this).addClass('selected');
+
+                    // Actualizar el panel de información con las coordenadas del hexágono seleccionado y mostrarlo
+                    $('#hex-coordinates').text(`Coordinates: ${hexIndex}`);
+                    infoPanel.addClass('show');
+                    mapContainer.removeClass('full-width').addClass('partial-width');
                 }
             });
 
@@ -44,7 +60,7 @@ $(document).ready(function() {
     }
 
     // Manejar el desplazamiento con el mouse
-    $('#map-container').on('mousedown', function(e) {
+    mapContainer.on('mousedown', function(e) {
         isDragging = true;
         lastMouseX = e.pageX;
         lastMouseY = e.pageY;

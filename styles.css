@@ -8,11 +8,13 @@ body {
     overflow: hidden; /* Evitar el scroll de la página */
 }
 
+/* Styling for the map container */
 #map-container {
-    width: 100vw;
+    position: relative;
+    width: 80%;
     height: 100vh;
     overflow: hidden;
-    position: relative;
+    float: left;
 }
 
 #hex-map {
@@ -54,4 +56,81 @@ body {
 
 .hex-number {
     pointer-events: none; /* Hace que los eventos del ratón no afecten al texto */
+}
+
+/* Info panel styling */
+#info-panel {
+    width: 20%;
+    height: 100vh;
+    background-color: #f7f7f7;
+    float: right;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    display: none; /* Hide by default */
+}
+
+#info-panel.show {
+    display: block; /* Show when class "show" is added */
+}
+
+#info-panel h3 {
+    margin-top: 0;
+}
+
+#info-panel p {
+    font-size: 18px;
+}
+
+/* Styling for the map container */
+#map-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    transition: width 0.3s ease;
+}
+
+/* When the info panel is hidden, make the map take full width */
+#map-container.full-width {
+    width: 100%;
+}
+
+/* When the info panel is shown, make the map take 80% of the width */
+#map-container.partial-width {
+    width: 80%;
+}
+
+/* Hide the info panel by default */
+#info-panel {
+    width: 20%;
+    height: 100vh;
+    background-color: #f7f7f7;
+    float: right;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    display: none; /* Hide by default */
+}
+
+#info-panel.show {
+    display: block; /* Show when class "show" is added */
+}
+
+/* Water hexagon (blue) */
+.hex.water {
+    background-color: dodgerblue; /* Color azul para agua */
+}
+
+/* Water hexagon (blue) */
+.hex.water {
+    /* background-image: url('src/grids/ocean.jpg'); */
+    background-color: dodgerblue; /* Fallback color for water */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Land hexagon (green) */
+.hex.land {
+    /* background-image: url('src/grids/grass.jpg'); */
+    background-color: seagreen; /* Fallback color for land */
+    background-size: cover;
+    background-position: center;
 }
