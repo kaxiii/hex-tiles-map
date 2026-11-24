@@ -51,19 +51,25 @@ body {
     transition: filter 0.15s ease;
 }
 
-/* Terrenos base (colores sólidos de respaldo) */
+/* Terrenos y biomas base */
 .hex.land {
     background-color: seagreen;
-    /* background-image: url('src/grids/grass.jpg'); */
-    background-size: cover;
-    background-position: center;
+}
+
+.hex.forest {
+    background-color: #2e7d32; /* Bosque */
+}
+
+.hex.mountain {
+    background-color: #78716c; /* Montaña */
+}
+
+.hex.coast {
+    background-color: #e2b857; /* Costa */
 }
 
 .hex.water {
-    background-color: dodgerblue;
-    /* background-image: url('src/grids/ocean.jpg'); */
-    background-size: cover;
-    background-position: center;
+    background-color: dodgerblue; /* Agua */
 }
 
 /* Feedback visual al pasar el cursor sin alterar el encaje */
@@ -71,8 +77,11 @@ body {
     filter: brightness(1.12);
 }
 
-/* Prioridad visual clara para la casilla seleccionada sobre cualquier terreno */
+/* Prioridad visual clara para la casilla seleccionada sobre cualquier bioma */
 .hex.land.selected,
+.hex.forest.selected,
+.hex.mountain.selected,
+.hex.coast.selected,
 .hex.water.selected,
 .hex.selected {
     background-color: #FF5733;
@@ -132,4 +141,5 @@ body {
 
 #info-panel p {
     font-size: 18px;
+    margin-bottom: 10px;
 }
